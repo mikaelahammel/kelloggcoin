@@ -27,3 +27,42 @@ blockchain = [
 # Anthony's KelloggCoin balance is 2650
 
 # 👇👇👇 Your code HERE 👇👇👇
+
+# creating array of hashes for users
+
+user_funds = [
+  {"name" => "ben", "funds" => 0 },
+  {"name" => "brian", "funds" => 0 },
+  {"name" => "evan", "funds" => 0 },
+  {"name" => "anthony", "funds" => 0 }
+]
+
+# Account for selling of bitcoin
+
+for block in blockchain
+  for user in user_funds
+    if block["from_user"] == user["name"]
+      user["funds"] = user["funds"] - block["amount"]
+    end
+  end
+end
+
+# Account for buying of bitcoin
+
+for block in blockchain
+  for user in user_funds
+    if block["to_user"] == user["name"]
+      user["funds"] = user["funds"] + block["amount"]
+    end
+  end
+end
+
+# Print out number of coin each user has
+
+for user in user_funds
+  puts "#{user["name"]}'s KelloggCoin balance is #{user["funds"]}"
+end
+
+# is there a way to make the name's capital?
+
+
