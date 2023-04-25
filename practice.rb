@@ -37,20 +37,12 @@ user_funds = [
   {"name" => "anthony", "funds" => 0 }
 ]
 
-# Account for selling of bitcoin
-
+# Account for buying and selling of bitcooing
 for block in blockchain
   for user in user_funds
     if block["from_user"] == user["name"]
       user["funds"] = user["funds"] - block["amount"]
     end
-  end
-end
-
-# Account for buying of bitcoin
-
-for block in blockchain
-  for user in user_funds
     if block["to_user"] == user["name"]
       user["funds"] = user["funds"] + block["amount"]
     end
